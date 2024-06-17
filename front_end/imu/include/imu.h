@@ -61,4 +61,4 @@ private:
   // 重力 @todo
   Eigen::Vector3d g_;
 };
-inline std::shared_ptr<Imu> imu_ptr;
+typedef std::shared_ptr<Imu> imu_ptr;

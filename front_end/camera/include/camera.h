@@ -49,4 +49,4 @@ private:
     // 相机自身位姿
     std::vector<Eigen::Matrix4f> camera_rt_;
 };
-inline std::shared_ptr<Camera> Camera_ptr;
+typedef std::shared_ptr<Camera> camera_ptr;
