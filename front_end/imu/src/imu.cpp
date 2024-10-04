@@ -10,6 +10,8 @@
  */
 
 #include "imu.h"
+using namespace Eigen;
+using namespace std;
 void Imu::setLinearVelocity(Eigen::Vector3d cur_linear_v)
 {
     linear_acc_.push_back(cur_linear_v);
@@ -59,4 +61,18 @@ void Imu::getmidPVQ()
     P_wb_.push_back(cur_p_wb);
     V_wb_.push_back(cur_v_wb);
     Q_wb_.push_back(cur_q_wb);
+}
+
+vector<Vector3d> Imu::getPwb()
+{
+    return P_wb_;
+}
+
+vector<Vector3d> Imu::getVwb()
+{
+    return V_wb_;
+}
+vector<Quaterniond> Imu::getQwb()
+{
+    return Q_wb_;
 }

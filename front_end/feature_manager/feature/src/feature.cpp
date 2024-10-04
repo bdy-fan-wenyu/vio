@@ -13,22 +13,22 @@
 using namespace Eigen;
 using namespace cv;
 using namespace std;
-void FeatureManager::triangulate(int frameCnt, Vector3d Pwb[], Matrix3d Rwb[], Vector3d tbc[], Matrix3d rbc[], Vector3d &point_3d)
+void FeatureManager::triangulate(int frameCnt, Vector3d Pwb[], Matrix3d Rwb[], Vector3d tbc, Matrix3d rbc, Vector3d &point_3d)
 {
     for (auto feature : features_)
     {
         frameCnt = feature.start_frame;
         // 计算当前帧相机相对于世界坐标系的Rwc Pwc
         Matrix<double, 4, 3> cur_camera_pose;
-        Vector3d Rwc_cur = Rwb[frameCnt] * rbc[frameCnt];
-        Vector3d Pwc_cur = Pwb[frameCnt] + Rwb[frameCnt] * rbc[frameCnt];
+        Vector3d Rwc_cur = Rwb[frameCnt] * rbc;
+        Vector3d Pwc_cur = Pwb[frameCnt] + Rwb[frameCnt] * rbc;
         cur_camera_pose.leftCols<3>() = Rwc_cur.transpose();
         cur_camera_pose.leftCols<1>() = -Rwc_cur.transpose() * Pwc_cur;
 
         // 计算下一帧相机相对于世界坐标的Rwc Pwc
         Matrix<double, 4, 3> next_camera_pose;
-        Vector3d Rwc_next = Rwb[frameCnt + 1] * rbc[frameCnt + 1];
-        Vector3d Pwc_next = Pwb[frameCnt + 1] + Rwb[frameCnt + 1] * rbc[frameCnt + 1];
+        Vector3d Rwc_next = Rwb[frameCnt + 1] * rbc;
+        Vector3d Pwc_next = Pwb[frameCnt + 1] + Rwb[frameCnt + 1] * rbc;
         next_camera_pose.leftCols<3>() = Rwc_next.transpose();
         next_camera_pose.leftCols<1>() = -Rwc_next.transpose() * Pwc_next;
 

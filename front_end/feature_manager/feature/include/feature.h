@@ -80,7 +80,7 @@ public:
      * @param rbc 相机相对于imu的旋转
      */
     void triangulate(int frameCnt, Eigen::Vector3d Pwb[], Eigen::Matrix3d Rwb[],
-                     Eigen::Vector3d tbc[], Eigen::Matrix3d rbc[], Eigen::Vector3d &point_3d);
+                     Eigen::Vector3d tbc, Eigen::Matrix3d rbc, Eigen::Vector3d &point_3d);
 
 private:
     std::list<FeaturePerId> features_;

@@ -44,10 +44,17 @@ public:
   void setAngleVelocity(Eigen::Vector3d);
   // 获取角速度
   std::vector<Eigen::Vector3d> getAngleVelocity();
+  // 获取Pwb
+  std::vector<Eigen::Vector3d> getPwb();
+  // 获取Qwb
+  std::vector<Eigen::Quaterniond> getQwb();
+  // 获取Vwb
+  std::vector<Eigen::Vector3d> getVwb();
 
 private:
   // 储存imu直出的线速度
-  std::vector<Eigen::Vector3d> linear_acc_;
+  std::vector<Eigen::Vector3d>
+      linear_acc_;
   // 储存imu直出的角速度
   std::vector<Eigen::Vector3d> angle_vel_;
   // 储存imu的Pwb
